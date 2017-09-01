@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<!--
+    Basically Basic Jekyll Theme 1.1.0
+    Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/jekyll-basically-theme/blob/master/LICENSE.md
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+    <title>Debian for Android Development</title>
+    <meta name="description" content="Step-by-step Guide to Installing Debian Stretch for Android Development">
+    <link rel="canonical" href="http://localhost:4000/debian%20for%20android%20development/debian-for-android-development/">
+  
+
+  <script>
+    /* Cut the mustard */
+    if ( 'querySelector' in document && 'addEventListener' in window ) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/assets/stylesheets/main.css">
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i">
+  
+
+  
+</head>
+
+
+  <body class="layout--post debian-for-android-development">
+
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+
+    <div class="sidebar-toggle-wrapper">
+      <button class="toggle navicon-button larr" type="button">
+        <span class="toggle-inner">
+          <span class="sidebar-toggle-label">Menu</span>
+          <span class="navicon"></span>
+        </span>
+      </button>
+    </div>
+
+    <div id="sidebar" class="sidebar">
+      <div class="inner">
+        <nav id="nav-primary" class="site-nav" itemscope itemtype="http://schema.org/SiteNavigationElement" aria-label="Main navigation">
+  <ul id="menu-main-navigation" class="menu">
+    <!-- Home link -->
+    <li class="menu-item">
+      <a href="/" itemprop="url">
+        <span itemprop="name">Home</span>
+      </a>
+    </li>
+
+    <!-- site.pages links -->
+    
+    
+
+    
+      
+      
+    
+      
+      
+    
+  </ul>
+</nav>
+        <ul class="contact-list">
+  
+    <li>
+      <a href="mailto:andrew@anddevw.com">
+        <span class="icon icon--email"><svg xmlns="http://www.w3.org/2000/svg" viewBox="313.1 3.7 16 16"><path d="M318.5 8.9c0-.2.2-.4.4-.4h4.5c.2 0 .4.2.4.4s-.2.4-.4.4h-4.5c-.3 0-.4-.2-.4-.4zm.4 2.1h4.5c.2 0 .4-.2.4-.4s-.2-.4-.4-.4h-4.5c-.2 0-.4.2-.4.4s.1.4.4.4zm3.5 1.2c0-.2-.2-.4-.4-.4h-3.1c-.2 0-.4.2-.4.4s.2.4.4.4h3.1c.2.1.4-.1.4-.4zm-1.5-8.4l-1.7 1.4c-.2.1-.2.4 0 .6s.4.2.6 0l1.4-1.2 1.4 1.2c.2.1.4.1.6 0s.1-.4 0-.6l-1.7-1.4c-.3-.1-.5-.1-.6 0zm7.8 6.2c.1.1.1.2.1.3v7.9c0 .8-.7 1.5-1.5 1.5h-12.5c-.8 0-1.5-.7-1.5-1.5v-7.9c0-.1.1-.2.1-.3l1.6-1.3c.2-.1.4-.1.6 0s.1.4 0 .6l-1.2 1 1.8 1.3v-4c0-.6.5-1.1 1.1-1.1h7.5c.6 0 1.1.5 1.1 1.1v4l1.8-1.3-1.2-1c-.2-.1-.2-.4 0-.6s.4-.2.6 0l1.6 1.3zm-11.6 2.2l4 2.8 4-2.8V7.6c0-.1-.1-.2-.2-.2h-7.5c-.1 0-.2.1-.2.2v4.6zm10.9-1l-4.7 3.4 3.4 2.6c.2.1.2.4.1.6-.1.2-.4.2-.6.1l-3.6-2.8-1.2.8c-.1.1-.3.1-.5 0l-1.2-.8-3.6 2.8c-.2.1-.4.1-.6-.1-.1-.2-.1-.4.1-.6l3.4-2.6-4.7-3.4v7.1c0 .4.3.6.6.6h12.5c.4 0 .6-.3.6-.6v-7.1z"/></svg></span>
+        <span class="label">Email</span>
+      </a>
+    </li>
+  
+
+
+  
+    <li><a href="https://www.stackoverflow.com/users/5688829/anddevw">
+  <span class="icon icon--stackoverflow"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414"><path d="M12.658 14.577v-4.27h1.423V16H1.23v-5.693h1.42v4.27h10.006zm-8.583-1.423h7.16V11.73h-7.16v1.424zm.173-3.235l6.987 1.46.3-1.38L4.55 8.54l-.302 1.38zm.906-3.37l6.47 3.02.602-1.3-6.47-3.02-.602 1.29zm1.81-3.19l5.478 4.57.906-1.08L7.87 2.28l-.9 1.078zM10.502 0L9.338.863l4.27 5.735 1.164-.862L10.5 0z"/></svg></span>
+  <span class="label">StackOverflow</span>
+</a>
+</li>
+  
+
+  
+    <li><a href="https://github.com/anddevw">
+  <span class="icon icon--github"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414"><path d="M8 0C3.58 0 0 3.582 0 8c0 3.535 2.292 6.533 5.47 7.59.4.075.547-.172.547-.385 0-.19-.007-.693-.01-1.36-2.226.483-2.695-1.073-2.695-1.073-.364-.924-.89-1.17-.89-1.17-.725-.496.056-.486.056-.486.803.056 1.225.824 1.225.824.714 1.223 1.873.87 2.33.665.072-.517.278-.87.507-1.07-1.777-.2-3.644-.888-3.644-3.953 0-.873.31-1.587.823-2.147-.09-.202-.36-1.015.07-2.117 0 0 .67-.215 2.2.82.64-.178 1.32-.266 2-.27.68.004 1.36.092 2 .27 1.52-1.035 2.19-.82 2.19-.82.43 1.102.16 1.915.08 2.117.51.56.82 1.274.82 2.147 0 3.073-1.87 3.75-3.65 3.947.28.24.54.73.54 1.48 0 1.07-.01 1.93-.01 2.19 0 .21.14.46.55.38C13.71 14.53 16 11.53 16 8c0-4.418-3.582-8-8-8"/></svg></span>
+  <span class="label">GitHub</span>
+</a>
+</li>
+  
+
+  
+    <li><a href="https://twitter.com/anddevw">
+  <span class="icon icon--twitter"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414"><path d="M16 3.038c-.59.26-1.22.437-1.885.517.677-.407 1.198-1.05 1.443-1.816-.634.37-1.337.64-2.085.79-.598-.64-1.45-1.04-2.396-1.04-1.812 0-3.282 1.47-3.282 3.28 0 .26.03.51.085.75-2.728-.13-5.147-1.44-6.766-3.42C.83 2.58.67 3.14.67 3.75c0 1.14.58 2.143 1.46 2.732-.538-.017-1.045-.165-1.487-.41v.04c0 1.59 1.13 2.918 2.633 3.22-.276.074-.566.114-.865.114-.21 0-.41-.02-.61-.058.42 1.304 1.63 2.253 3.07 2.28-1.12.88-2.54 1.404-4.07 1.404-.26 0-.52-.015-.78-.045 1.46.93 3.18 1.474 5.04 1.474 6.04 0 9.34-5 9.34-9.33 0-.14 0-.28-.01-.42.64-.46 1.2-1.04 1.64-1.7z" fill-rule="nonzero"/></svg></span>
+  <span class="label">Twitter</span>
+</a>
+</li>
+  
+
+  
+    <li><a href="https://www.linkedin.com/in/andrew-wright-dev">
+  <span class="icon icon--linkedin"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414"><path d="M13.632 13.635h-2.37V9.922c0-.886-.018-2.025-1.234-2.025-1.235 0-1.424.964-1.424 1.96v3.778h-2.37V6H8.51v1.04h.03c.318-.6 1.092-1.233 2.247-1.233 2.4 0 2.845 1.58 2.845 3.637v4.188zM3.558 4.955c-.762 0-1.376-.617-1.376-1.377 0-.758.614-1.375 1.376-1.375.76 0 1.376.617 1.376 1.375 0 .76-.617 1.377-1.376 1.377zm1.188 8.68H2.37V6h2.376v7.635zM14.816 0H1.18C.528 0 0 .516 0 1.153v13.694C0 15.484.528 16 1.18 16h13.635c.652 0 1.185-.516 1.185-1.153V1.153C16 .516 15.467 0 14.815 0z" fill-rule="nonzero"/></svg></span>
+  <span class="label">LinkedIn</span>
+</a>
+</li>
+  
+
+  
+
+  <a href="https://android.stackexchange.com/users/141772/anddevw">
+<img src="https://stackexchange.com/users/flair/7410666.png?theme=dark" width="208" height="58" alt="profile for andDevW on Stack Exchange, a network of free, community-driven Q&amp;A sites" title="profile for andDevW on Stack Exchange, a network of free, community-driven Q&amp;A sites">
+</a>
+
+</ul>
+
+      </div>
+    </div>
+
+    <div class="canvas">
+      <div class="wrapper">
+        
+
+<header id="masthead">
+  <div class="inner">
+    <div class="title-area">
+      
+        <p class="site-title">
+          <a href="/">
+            <img src="/assets/images/AW_ICON_NEW.png" alt="" class="site-logo">
+            <span>Andrew Wright&#39;s Technical Blog</span>
+          </a>
+        </p>
+      
+    </div>
+  </div>
+</header>
+
+        <header class="intro">
+  
+    
+    
+    
+    <div class="intro-image">
+      <img src="/assets/img/" alt="Debian for Android Development">
+    </div>
+  
+
+  <div class="inner">
+    <div class="intro-text">
+      <h1 class="intro-title">Debian for Android Development
+</h1>
+      
+
+      
+        
+
+        <p class="entry-meta">
+          <span class="byline-item"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="379 72 16 16"><g><g><path fill="none" d="M380.8,86.7h12.3v-8.8h-12.3V86.7z M389.5,78.8h1.7v1.4h-1.7V78.8z M389.5,81.3h1.7v1.4h-1.7V81.3z M389.5,83.8h1.7v1.4h-1.7V83.8z M386.1,78.8h1.7v1.4h-1.7V78.8z M386.1,81.3h1.7v1.4h-1.7V81.3z M386.1,83.8h1.7v1.4h-1.7V83.8z M382.8,78.8h1.7v1.4h-1.7V78.8z M382.8,81.3h1.7v1.4h-1.7V81.3z M382.8,83.8h1.7v1.4h-1.7V83.8z"/><polygon fill="none" points="384.7 75.1 383.4 75.1 383.4 74.3 380.8 74.3 380.8 76.6 393.2 76.6 393.2 74.3 390.6 74.3 390.6 75.1 389.3 75.1 389.3 74.3 384.7 74.3"/><rect x="382.8" y="78.8" width="1.7" height="1.4"/><rect x="386.1" y="78.8" width="1.7" height="1.4"/><rect x="389.5" y="78.8" width="1.7" height="1.4"/><rect x="382.8" y="81.3" width="1.7" height="1.4"/><rect x="386.1" y="81.3" width="1.7" height="1.4"/><rect x="389.5" y="81.3" width="1.7" height="1.4"/><rect x="382.8" y="83.8" width="1.7" height="1.4"/><rect x="386.1" y="83.8" width="1.7" height="1.4"/><rect x="389.5" y="83.8" width="1.7" height="1.4"/><path d="M383.4,72v1.1h-3.8V88h14.9V73.1h-3.8V72h-1.3v1.1h-4.7V72H383.4z M393.2,86.7h-12.3v-8.8h12.3L393.2,86.7L393.2,86.7z M389.3,74.3v0.8h1.3v-0.8h2.5v2.3h-12.3v-2.3h2.5v0.8h1.3v-0.8H389.3z"/></g></g></svg></span><time datetime="2017-08-18T06:32:44-07:00">August 18, 2017</time></span> <span class="byline-item"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="15 309.7 16 16"><g><path d="M23.9 315.1v3.6c0 .5-.4.9-.9.9s-.9-.4-.9-.9v-3.6h1.8z"/><path d="M30.1 317.7c.5 3.9-2.3 7.5-6.2 7.9-3.9.5-7.5-2.3-7.9-6.2-.5-3.9 2.3-7.5 6.2-7.9v-1.8H24v1.8c1.1.1 2.7.7 3.5 1.4l1.3-1.3 1.3 1.3-1.3 1.3c.5.9 1.2 2.5 1.3 3.5zm-1.8.9c0-2.9-2.4-5.3-5.3-5.3s-5.3 2.4-5.3 5.3 2.4 5.3 5.3 5.3 5.3-2.3 5.3-5.3z"/></g></svg></span>13 min read</span>
+        </p>
+      
+
+      
+
+      
+    </div>
+  </div>
+</header>
+
+
+<main id="main" class="page-content" aria-label="Content">
+  <div class="inner">
+    <article class="entry-wrap">
+      <div class="entry-content">
+        <h1>Step-by-step Guide to Installing Debian Stretch for Android Development</h1>
+
+<p>When it comes to operating systems, I’m consistently amazed at how bad newer versions of both Windows and macOS/osX are. Ultimately, both Microsoft and Apple can really afford to be as bad as they want, because at the end of the day, what can you do? Are you going to stop what you’re doing and invest several years of your life into learning how to use Linux?</p>
+
+<p>I did, and it’s been one of the best decisions that I’ve ever made.
+My OS is built entirely by other people like myself who are passionate about open source software, it costs me zero dollars to upgrade and I never have any real problems with it.<br />
+On top of that, the Portable Operating System Interface (POSIX) guarantees that time invested in learning how to use Linux will never be wasted time. A Linux command line is for the most part a Linux command line.</p>
+
+<p>I want to make it easier for everyone to use GNU/Linux and break free of bad OSs. Sadly, most people have to use Windows or OSX at work, which basically means they’re not savable in the GNU/Linux sense of the meaning. For aspiring Android developers, or Android developers in general, this is not the case. An Android developer would actually be able to do slightly more with Debian, and on a far less expensive machine. Learning how Linux works teaches you a lot about how Android works, as there’s a powerful synergy between the two operating systems.</p>
+
+<p>I’ve personally been focused on developing Android apps for several years, and for Android development Debian works better than OSX or Windows. Debian is to Android what macOS/osX is to iOS. Any Android developer can use Debian for every step of Android development, with less problems than they would face if they were using either macOS or Windows.</p>
+
+<p>Debian is legendary for it’s stability, and it turns out that it’s actually relatively easy for just about anyone to use.
+On the flip-side, installing Debian and getting it working is difficult enough to prevent a lot of people from using it.</p>
+
+<p>If you follow these instructions you’ll end up with a fully working Debian system with<br />
+i3 Dynamic Window Manager(DWM),<br />
+openjdk-7, openjdk-8, <br />
+Android Studio,<br />
+gradle,<br />
+fastboot,<br />
+adb,<br />
+Chromium,<br />
+vim,<br />
+xfe,<br />
+libreoffice and inkscape.</p>
+
+<p>There are two parts to this walk-through:<br />
+I.   MINIMAL DEBIAN OS INSTALL<br />
+II.  CONFIGURING DEBIAN FOR ANDROID DEVELOPMENT</p>
+
+<h1>I.   MINIMAL DEBIAN OS INSTALL</h1>
+
+<p>Step-by-step guide to using the <a href="http://localhost:5000/how-to-leave-ubuntu-for-debian/">Debian Stretch USB installer</a> to install Debian on a PC.</p>
+
+<p>Things You’ll Need</p>
+<h3>Minimum Requirements</h3>
+
+<ol>
+  <li>PC laptop or desktop</li>
+  <li>At least 4GB of RAM</li>
+  <li>A hard drive (HDD) or solid state drive (SSD) with at least 100GB of storage.</li>
+  <li>An ethernet cable with an Internet connection</li>
+</ol>
+
+<h3>Preferred Requirements</h3>
+<p>If you want the easiest possible install with the best possible results for the lowest price:</p>
+<ol>
+  <li>Lenovo ThinkPad model T400, T500 or X220.</li>
+  <li>8GB or 16GB RAM memory. More is better.</li>
+  <li>100 GB or bigger SSD.</li>
+  <li>An ethernet cable with an Internet connection</li>
+</ol>
+
+<h3>Get Started!</h3>
+<p><strong>Insert the <a href="http://localhost:5000/how-to-leave-ubuntu-for-debian/">Debian Stretch USB installer</a>  into an open USB port on your PC</strong>;</p>
+
+<p>Power on, and look for any prompts to enter bios or the boot menu.
+Generally pressing a key or combination of keys at boot will take you into a boot menu.
+In the boot menu select the USB drive.</p>
+
+<p>Pictures are going to work best for the first steps of the installation process:</p>
+
+<iframe src="https://docs.google.com/presentation/d/1-T953Y2t0OkTiLmu6Bz2I__BeRRsf90eRq3UO7KqHxc/embed?start=false&amp;loop=false&amp;delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+<h2>II.  CONFIGURING DEBIAN FOR ANDROID DEVELOPMENT</h2>
+
+<p>Boot your PC and log in.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>localhost login: developer
+Password: _
+</code></pre>
+</div>
+
+<p>There won’t be any visible change as you type in your password.<br />
+Hit Enter.<br />
+And check out your new prompt:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>~$
+</code></pre>
+</div>
+
+<p>At this point, we have a very minimalist Debian setup.<br />
+This is ideal.<br />
+There is nothing that we don’t want, and we only need to install packages that we want.<br />
+Debian apps are called packages.
+Debian gets packages from online repositories and offline repositories that come in sets of DVDs, BluRay disks or CDs.
+You don’t need an Internet connection to install Debian, and in fact <a href="https://www.debian.org/doc/manuals/securing-debian-howto/ch3.en.html#s3.3">Debian’s Securing Debian Manual</a> explains that Debian is not safe to connect to the Internet until after installation is complete. I’ve read a lot of technical blogs that explain how to install Debian, and I’ve never seen this detail about installing Debian offline mentioned in any of them.
+Debian needs to be installed <strong>offline</strong>, configured <strong>offline</strong> and then rebooted and connected to the Internet when it’s able to defend itself correctly.</p>
+
+<p>I mentioned that this is a minimalist Debian install, and that means we don’t have sudo installed yet, so in order to make changes and install packages you’ll need to become root.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ su
+  Password: _  
+</code></pre>
+</div>
+
+<p>Enter your root user (superuser = su) password and hit Enter.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>root@localhost:/home/developer# _
+</code></pre>
+</div>
+
+<p>Notice the change, you’re presented with the root prompt ‘#’ instead of the normal user prompt ‘$’. We need to install a bunch of packages before we can safely connect to the Internet, so we’ll mount the USB installer and use apt-cdrom.
+Since we’re not using a physical Blu-ray disk there is the issue of mounting the USB drive so that it works like a Blu-ray disk.</p>
+
+<p>First we need to make a new directory</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code># mkdir /media/usb0
+</code></pre>
+</div>
+
+<p>Next we need to determine the path to your USB installer.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code># fdisk -l
+</code></pre>
+</div>
+
+<p>You will get a response, and the information on the left-hand side will look something like this:</p>
+
+<p>Device  <br />
+/dev/sda1
+/dev/sda2  <br />
+/dev/sda5</p>
+
+<p>Device   <br />
+/dev/sdb1</p>
+
+<p>The second device is the USB installer.    <br />
+In my case, the path listed /dev/sdb1<br />
+Will need to be mounted as /dev/sdb</p>
+
+<p>You will generally get a path like one of these: <br />
+/dev/sdx1</p>
+
+<p>/dev/mmcblk0p1</p>
+
+<p>These paths would be mounted as:<br />
+/dev/sdx</p>
+
+<p>/dev/mmcblk0</p>
+
+<p>We need to mount the USB drive (in my case dev/sdb) as a read-only loop device (-o loop,ro) at /media/usb0</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code># mount -o loop,ro /dev/sdb /media/usb0
+</code></pre>
+</div>
+
+<p>Next we need to tell apt-cdrom not to mount anything (-m) and to use the CD-ROM mount point(-d) of /media/usb0 and add a CD-ROM.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code># apt-cdrom -m -d=/media/usb0 add
+</code></pre>
+</div>
+
+<p>Now we need to use vi to edit /etc/apt/sources.list</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code># vi /etc/apt/sources.list
+</code></pre>
+</div>
+
+<p>There will be a decent number of lines, which you need to delete all of.<br />
+Hit the Escape key and then hit the ‘d’ key repeatedly until every line has been deleted.<br />
+Next, hit the Escape key and then hit the ‘i’ key once.<br />
+Now type in the following, and make it look exactly like this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>deb [trusted=yes] file:/media/usb0 stretch  main  
+</code></pre>
+</div>
+
+<p>If you make a mistake, hit the Escape key, and then use ‘x’ to delete the typo.<br />
+Hit the Escape key and then ‘i’, and then type in the correct letters.    <br />
+When you have the line exactly, hit the Escape key, then type in the following:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>:wq  
+</code></pre>
+</div>
+
+<p>And hit the Enter key.  <br />
+Now update APT’s package list to reflect all of the packages available via the USB installer, following any instructions given:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code># apt-get update  
+</code></pre>
+</div>
+
+<p>Then upgrade the packages</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code># apt-get upgrade  
+</code></pre>
+</div>
+
+<p>To install packages vim and curl:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  # apt-get install sudo vim curl
+</code></pre>
+</div>
+
+<p>Add your user ‘developer’ to group sudo:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code># apt-get update  
+# adduser developer sudo  
+</code></pre>
+</div>
+
+<p>Next, install ufw (Universal Firewall) so that we can connect to the Internet without being immediately compromised:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code># apt-get update  
+# apt-get install ufw  
+</code></pre>
+</div>
+
+<p>Configure ufw:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code># ufw enable
+</code></pre>
+</div>
+
+<p>ufw won’t work until you reboot, so now’s a good time to do that:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code># reboot
+</code></pre>
+</div>
+
+<p>Login.
+Check to make sure that ufw is active and set correctly:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ sudo ufw status verbose
+</code></pre>
+</div>
+
+<p>If ufw is set correctly, it should read:</p>
+<h5>Status: active  
+
+    Logging: on (low)      
+
+    Default: deny (incoming), allow (outgoing)      
+
+    New profiles: skip</h5>
+
+<p>Before we can take full advantage of the Internet and install the rest of the packages that we need to install, we need to reconfigure our sources.list file.
+This will require vim, which is easy to use and extremely useful.</p>
+
+<h4>vimtutor</h4>
+<p>vim comes with its own interactive tutorial, so learning how to use it is a straightforward process that doesn’t take a lot of time.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ vimtutor
+</code></pre>
+</div>
+
+<p>Work through the interactive tutorial, and when you’re done you can configure your sources.list file</p>
+
+<p>If you want to shortcut this vim editing challenge of mine you can opt for the easier method and learn how to use curl. This is how you can use curl to download the already completed sources.list file from my GitHub:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ curl -o sources.list https://raw.githubusercontent.com/andDevW/debiandroid/master/CONFIGURATION_FILES/SOURCES/MAIN/sources.list
+</code></pre>
+</div>
+
+<p>then move the file you just downloaded to /etc/apt/sources.list</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ sudo mv ~/home/developer/sources.list /etc/apt/sources.list
+</code></pre>
+</div>
+
+<p>If you don’t live in the United States of America you might want to change the country to a country that’s closer to where you’re located.<br />
+US deb http://ftp.us.debian.org/debian/ jessie-backports main<br />
+IN deb http://ftp.in.debian.org/debian/ jessie-backports main<br />
+DE deb http://ftp.de.debian.org/debian/ jessie-backports main<br />
+XY deb http://ftp.xy.debian.org/debian/ jessie-backports main</p>
+
+<p>The following explains how to use the ‘#’ to either enable or disable a line:</p>
+
+<p>ENABLED</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>deb http://ftp.us.debian.org/debian/ jessie-backports main
+</code></pre>
+</div>
+
+<p>DISABLED (commented out)</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>#deb http://ftp.us.debian.org/debian/ jessie-backports main
+</code></pre>
+</div>
+
+<p>You’ll need to comment out the line that we edited earlier, so that apt will only check online repositories, and not the local USB installer.
+Here’s what your sources.list needs to look like:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code># /etc/apt/sources.list
+
+#stretch aptitude-cdrom via usb0
+#deb [trusted=yes] file:/media/usb0 stretch  main  
+
+#stretch security updates main
+deb http://security.debian.org/ stretch/updates main
+deb-src http://security.debian.org/ stretch/updates main
+
+#stretch main
+deb http://ftp.us.debian.org/debian/ stretch main
+deb-src http://ftp.us.debian.org/debian/ stretch main
+
+#jessie-backports main
+deb http://ftp.us.debian.org/debian/ jessie-backports  main
+deb-src http://ftp.us.debian.org/debian/ jessie-backports main
+</code></pre>
+</div>
+
+<p>Ignore the top three lines that are commented out, and look at the rest of the file.<br />
+Notice that the sources.list file has three different repositories, with two lines each.<br />
+The first line begins with deb …<br />
+The second line begins with deb-src … <br />
+Then everything that comes after that prefix is exactly the same.</p>
+
+<p>An easy way to enter these lines into your sources.list is to only type out the first lines starting with ‘deb’.  <br />
+Next hit the Escape key, then move the cursor to the line you want to copy and hit the ‘Y’ key to copy the line.<br />
+Hit the Escape key and then hit the ‘P’ key to paste.<br />
+Vi will copy the first line onto the line below it, so now you only need to insert ‘-src’ after ‘deb’.</p>
+
+<p>Before updating apt we might as well add the i386 architecture that Android Studio requires:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ sudo dpkg –add-architecture i386
+</code></pre>
+</div>
+
+<p>Now to update and upgrade apt:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ sudo apt-get update &amp;&amp; sudo apt-get upgrade
+</code></pre>
+</div>
+
+<p>**If you make any mistakes, apt will inform you of where they were made.
+One way to make identifying the mistake much easier is to set vi to show number lines by default. Here’s how:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ echo “set number” &gt;&gt; ~/.vimrc
+</code></pre>
+</div>
+
+<p>This is a method of creating new files and amending existing files,
+if you were to issue the above command two times your ~/.vimrc file would look like this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>set number
+  set number
+</code></pre>
+</div>
+
+<p>Here is how issuing the command works:<br />
+echo “YOUR TEXT” » YOUR_FILENAME</p>
+
+<p>As apt updates you will be presented with messages that you need to scan through and ultimately hit the Enter key to proceed.
+At the end of the message you will have to enter ‘q’ to quit.
+Now that your Debian OS is up-to-date you can get down to business.
+Right now you don’t have Xorg installed, so you don’t have the ability to display graphics (at least not graphics as we know them now), and as a result you won’t be able to run Android Studio or the Chromium browser. For Android development we need to have graphics, and we also need easy access to a terminal window, and on top of that, we want to keep everything as lightweight as possible with regards to resource <br />
+ need to install a Dynamic Window Manager (DWM), and since i3 works beautifully with Android Studio right out of the box, we’re going to use i3.</p>
+
+<p>These commands are available via GitHub, to simplify things: https://github.com/andDevW/debiandroid/resources/commands.txt</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ sudo apt-get install xorg openjdk-7-jdk i3 xfe chromium android-tools-adb android-tools-fastboot gradle git git-core gnupg flex bison gperf build-essential zip curl zlib1g-dev gcc-multilib g++-multilib  libc6-dev-i386 lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z1-dev ccache libgl1-mesa-dev  libxml2-utils xsltproc unzip inkscape
+</code></pre>
+</div>
+
+<p>You’ll get a prompt asking you for a Y/n<br />
+The uppercase Y means the default is YES, so you can just hit Enter.</p>
+
+<p>When the installation is complete  you’ll need to reboot to get everything working:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ sudo reboot
+</code></pre>
+</div>
+
+<p>Now, log in and launch Xserver:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ startx
+</code></pre>
+</div>
+
+<p>i3 will prompt you to configure the ~/.i3/config, so follow the prompt or just hit Enter.<br />
+Now you should be looking at a new type of homescreen, and this is i3.
+i3 is in my opinion the best DWM that there is, because it will allow you to rely almost entirely on the keyboard for navigation that would generally require a mouse or touchpad.
+This ends up being a massive improvement, and saving a ton of time.</p>
+
+<p>Here is a basic i3 tutorial, to show you how to get around in i3:
+Your mod key (Mod) will generally be the Windows key on your keyboard.
+Hit Mod + Enter and open a new terminal window.<br />
+Hit Mod + Enter and open another terminal window.
+Hit Mod + Enter and open another terminal window.
+Hit Mod + Enter and open one last terminal window. <br />
+Now hold Mod and hit the left arrow key &lt;–
+While holding Mod hit the left arrow key again.
+While still holding Mod hit the right arrow key –&gt;
+While holding Mod hit the left arrow key again.
+Now hit Mod + Shift + ‘Q’ and close the window that you have selected.</p>
+
+<p>Now hit Mod + ‘E’.
+Hit Mod + ‘E’ again.</p>
+
+<p>Hit Mod + Shift + ‘E’ to Exit i3.</p>
+
+<p>Now to start the Chromium browser you can use the command line:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ chromium
+</code></pre>
+</div>
+
+<p>But there is a shortcut that starts Chromium without taking up a terminal window in the process.
+Hold Mod(Windows key) and press ‘D’ , bringing up XFE.<br />
+Now type in the word chromium<br />
+When you see chromium selected hit the Enter key.</p>
+
+<p>Now, inside Chromium navigate to:<br />
+https://developer.android.com/studio/index.html#downloads<br />
+Download Android Studio for Linux, or:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ cd ~/Downloads  
+$ wget https://dl.google.com/dl/android/studio/ide-zips/2.3.3.0/android-studio-ide-162.4069837-linux.zip
+</code></pre>
+</div>
+
+<p>Then verify the integrity of the download:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ echo “1383cfd47441e5f820b6257a1bdd683e0e980bc76c7f2027ef84dc2e6ad2f17f android-studio-ide-162.4069837-linux.zip” | sha256sum -c
+</code></pre>
+</div>
+
+<p>If the file downloaded correctly it will say  <br />
+<strong>android-studio-ide-162.4069837-linux.zip:OK</strong>
+Now change into your home directory and unzip the file that you just downloaded:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ cd ~
+$ unzip ~/Downloads/android-studio-ide-162.4069837-linux.zip
+</code></pre>
+</div>
+
+<p>When the file is finished unzipping, if no errors are displayed you can go ahead and delete the zip file:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ rm -rf ~/Downloads/android-studio-ide-162.4069837-linux.zip
+</code></pre>
+</div>
+
+<p>Now you’ll need to install openjdk-8-jdk:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> $ sudo apt-get install openjdk-8-jdk
+</code></pre>
+</div>
+
+<p>Next, you’ll need to configure the JAVA_HOME and ANDROID_HOME environments in your ~/.bashrc<br />
+*IT’S IMPORTANT TO MAKE SURE THAT YOU ARE NOT ROOT WHEN EDITING .bashrc</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ vi ~/.bashrc
+</code></pre>
+</div>
+
+<p>Next hit ESC then SHIFT + ‘G’ to jump to the bottom of the file.<br />
+Hit ESC, and then SHIFT + ‘O’ to skip to a new line.<br />
+Add the following lines, substituting your USERNAME for ‘developer’ if you didn’t use ‘developer’ as your USERNAME.<br />
+Some of which are commented out, but will be useful for building AOSP.<br />
+ADD THESE LINES:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>#Configure the JAVA_HOME environment
+#Configuration for openjdk-7-jdk
+export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
+
+#Configuration for openjdk-8-jdk:
+#export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
+
+#Configure the ANDROID_HOME environment  
+export ANDROID_HOME=/home/developer/Android/Sdk
+export PATH=$PATH:/home/developer/Android/Sdk/platform-tools
+export PATH=$ANDROID_HOME/tools:$PATH/
+</code></pre>
+</div>
+
+<p>If you want to skip manually configuring your bashrc file you can use curl to download the complete file from GitHub:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  $ curl -o ~/.bashrc https://raw.githubusercontent.com/andDevW/debiandroid/master/CONFIGURATION_FILES/.bashrc
+</code></pre>
+</div>
+
+<p>Now source .bashrc so that the changes you made will take effect:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    $ source ~/.bashrc or
+    $ . ~/.bashrc
+</code></pre>
+</div>
+
+<p>You will quickly know that your .bashrc file either works or doesn’t work. <br />
+If it worked your command prompt will now be colored.<br />
+If your .bashrc file doesn’t work you won’t see a colored command line prompt, and you might get an error about where it’s broken.</p>
+
+<p>Now create a symbolic link to the android studio script so that you can easily launch Android Studio from dmenu by selecting ‘astudio’ :</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ sudo ln -s  ~/android-studio/bin/studio.sh /usr/local/bin/astudio
+</code></pre>
+</div>
+
+<p>Now select astudio in XFE, or run the script manually:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ cd ~/android-studio/bin/
+$ ./studio.sh
+</code></pre>
+</div>
+
+<p>In the Android Studio Wizard select Next, then use the default configuration and wait for everything to download, and then hit the Finish button.
+Now you have a fully working installation of Android Studio v2.3.3 on a fully working Debian Stretch OS.<br />
+Remember to update your system by running the command</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ sudo apt-get update &amp;&amp; sudo apt-get upgrade
+</code></pre>
+</div>
+
+<p>Enjoy GNU/Linux and Android development!</p>
+
+      </div>
+      
+    </article>
+
+    <footer id="footer" class="site-footer">
+  <div class="copyright">
+    
+      <p>&copy; 2017 Andrew Wright's Technical Blog.</p>
+    
+  </div>
+</footer>
+
+  </div>
+</main>
+
+      </div>
+    </div>
+
+    
+
+<script async src="/assets/javascripts/main.js"></script>
+
+  </body>
+
+</html>

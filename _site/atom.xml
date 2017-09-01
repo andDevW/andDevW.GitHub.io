@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/atom.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2017-09-01T12:41:03-07:00</updated><id>http://localhost:4000/</id><title type="html">Andrew Wright’s Technical Blog</title><subtitle>Ways to use Debian for Android</subtitle><entry><title type="html">Final AOSP for Hammerhead</title><link href="http://localhost:4000/final-aosp-for-hammerhead/" rel="alternate" type="text/html" title="Final AOSP for Hammerhead" /><published>2017-08-26T11:48:01-07:00</published><updated>2017-08-26T11:48:01-07:00</updated><id>http://localhost:4000/final-aosp-for-hammerhead</id><content type="html" xml:base="http://localhost:4000/final-aosp-for-hammerhead/">&lt;h1&gt;How to Build the Final AOSP Image for the Nexus 5&lt;/h1&gt;
+
+&lt;p&gt;This guide will walk you through all of the steps required to build an AOSP image for the Nexus 5(code name Hammerhead).
+The newest build available for Hammerhead is M4B30Z, Android 	android-6.0.1_r77 Marshmallow.
+The guide was put together with Debian Stretch, which I explain how to install &lt;a href=&quot;https://anddevw.com/debian%20for%20android%20development/debian-for-android-development/&quot;&gt;here&lt;/a&gt;.&lt;br /&gt;
+If you followed that guide, everything explained in this guide will work perfectly.&lt;/p&gt;
+
+&lt;p&gt;Establishing a Build environment…&lt;/p&gt;</content><author><name></name></author><category term="hammerhead" /><category term="nexus" /><category term="distro" /><summary type="html">How to Build the Final AOSP Image for the Nexus 5</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/img/" /></entry><entry><title type="html">Debian for Android Development</title><link href="http://localhost:4000/debian%20for%20android%20development/debian-for-android-development/" rel="alternate" type="text/html" title="Debian for Android Development" /><published>2017-08-18T06:32:44-07:00</published><updated>2017-08-18T06:32:44-07:00</updated><id>http://localhost:4000/debian%20for%20android%20development/debian-for-android-development</id><content type="html" xml:base="http://localhost:4000/debian%20for%20android%20development/debian-for-android-development/">&lt;h1&gt;Step-by-step Guide to Installing Debian Stretch for Android Development&lt;/h1&gt;
+
+&lt;p&gt;When it comes to operating systems, I’m consistently amazed at how bad newer versions of both Windows and macOS/osX are. Ultimately, both Microsoft and Apple can really afford to be as bad as they want, because at the end of the day, what can you do? Are you going to stop what you’re doing and invest several years of your life into learning how to use Linux?&lt;/p&gt;
+
+&lt;p&gt;I did, and it’s been one of the best decisions that I’ve ever made.
+My OS is built entirely by other people like myself who are passionate about open source software, it costs me zero dollars to upgrade and I never have any real problems with it.&lt;br /&gt;
+On top of that, the Portable Operating System Interface (POSIX) guarantees that time invested in learning how to use Linux will never be wasted time. A Linux command line is for the most part a Linux command line.&lt;/p&gt;
+
+&lt;p&gt;I want to make it easier for everyone to use GNU/Linux and break free of bad OSs. Sadly, most people have to use Windows or OSX at work, which basically means they’re not savable in the GNU/Linux sense of the meaning. For aspiring Android developers, or Android developers in general, this is not the case. An Android developer would actually be able to do slightly more with Debian, and on a far less expensive machine. Learning how Linux works teaches you a lot about how Android works, as there’s a powerful synergy between the two operating systems.&lt;/p&gt;
+
+&lt;p&gt;I’ve personally been focused on developing Android apps for several years, and for Android development Debian works better than OSX or Windows. Debian is to Android what macOS/osX is to iOS. Any Android developer can use Debian for every step of Android development, with less problems than they would face if they were using either macOS or Windows.&lt;/p&gt;
+
+&lt;p&gt;Debian is legendary for it’s stability, and it turns out that it’s actually relatively easy for just about anyone to use.
+On the flip-side, installing Debian and getting it working is difficult enough to prevent a lot of people from using it.&lt;/p&gt;
+
+&lt;p&gt;If you follow these instructions you’ll end up with a fully working Debian system with&lt;br /&gt;
+i3 Dynamic Window Manager(DWM),&lt;br /&gt;
+openjdk-7, openjdk-8, &lt;br /&gt;
+Android Studio,&lt;br /&gt;
+gradle,&lt;br /&gt;
+fastboot,&lt;br /&gt;
+adb,&lt;br /&gt;
+Chromium,&lt;br /&gt;
+vim,&lt;br /&gt;
+xfe,&lt;br /&gt;
+libreoffice and inkscape.&lt;/p&gt;
+
+&lt;p&gt;There are two parts to this walk-through:&lt;br /&gt;
+I.   MINIMAL DEBIAN OS INSTALL&lt;br /&gt;
+II.  CONFIGURING DEBIAN FOR ANDROID DEVELOPMENT&lt;/p&gt;
+
+&lt;h1&gt;I.   MINIMAL DEBIAN OS INSTALL&lt;/h1&gt;
+
+&lt;p&gt;Step-by-step guide to using the &lt;a href=&quot;http://localhost:5000/how-to-leave-ubuntu-for-debian/&quot;&gt;Debian Stretch USB installer&lt;/a&gt; to install Debian on a PC.&lt;/p&gt;
+
+&lt;p&gt;Things You’ll Need&lt;/p&gt;
+&lt;h3&gt;Minimum Requirements&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;PC laptop or desktop&lt;/li&gt;
+  &lt;li&gt;At least 4GB of RAM&lt;/li&gt;
+  &lt;li&gt;A hard drive (HDD) or solid state drive (SSD) with at least 100GB of storage.&lt;/li&gt;
+  &lt;li&gt;An ethernet cable with an Internet connection&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3&gt;Preferred Requirements&lt;/h3&gt;
+&lt;p&gt;If you want the easiest possible install with the best possible results for the lowest price:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Lenovo ThinkPad model T400, T500 or X220.&lt;/li&gt;
+  &lt;li&gt;8GB or 16GB RAM memory. More is better.&lt;/li&gt;
+  &lt;li&gt;100 GB or bigger SSD.&lt;/li&gt;
+  &lt;li&gt;An ethernet cable with an Internet connection&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3&gt;Get Started!&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Insert the &lt;a href=&quot;http://localhost:5000/how-to-leave-ubuntu-for-debian/&quot;&gt;Debian Stretch USB installer&lt;/a&gt;  into an open USB port on your PC&lt;/strong&gt;;&lt;/p&gt;
+
+&lt;p&gt;Power on, and look for any prompts to enter bios or the boot menu.
+Generally pressing a key or combination of keys at boot will take you into a boot menu.
+In the boot menu select the USB drive.&lt;/p&gt;
+
+&lt;p&gt;Pictures are going to work best for the first steps of the installation process:&lt;/p&gt;
+
+&lt;iframe src=&quot;https://docs.google.com/presentation/d/1-T953Y2t0OkTiLmu6Bz2I__BeRRsf90eRq3UO7KqHxc/embed?start=false&amp;amp;loop=false&amp;amp;delayms=3000&quot; frameborder=&quot;0&quot; width=&quot;960&quot; height=&quot;569&quot; allowfullscreen=&quot;true&quot; mozallowfullscreen=&quot;true&quot; webkitallowfullscreen=&quot;true&quot;&gt;&lt;/iframe&gt;
+
+&lt;h2&gt;II.  CONFIGURING DEBIAN FOR ANDROID DEVELOPMENT&lt;/h2&gt;
+
+&lt;p&gt;Boot your PC and log in.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;localhost login: developer
+Password: _
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;There won’t be any visible change as you type in your password.&lt;br /&gt;
+Hit Enter.&lt;br /&gt;
+And check out your new prompt:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~$
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;At this point, we have a very minimalist Debian setup.&lt;br /&gt;
+This is ideal.&lt;br /&gt;
+There is nothing that we don’t want, and we only need to install packages that we want.&lt;br /&gt;
+Debian apps are called packages.
+Debian gets packages from online repositories and offline repositories that come in sets of DVDs, BluRay disks or CDs.
+You don’t need an Internet connection to install Debian, and in fact &lt;a href=&quot;https://www.debian.org/doc/manuals/securing-debian-howto/ch3.en.html#s3.3&quot;&gt;Debian’s Securing Debian Manual&lt;/a&gt; explains that Debian is not safe to connect to the Internet until after installation is complete. I’ve read a lot of technical blogs that explain how to install Debian, and I’ve never seen this detail about installing Debian offline mentioned in any of them.
+Debian needs to be installed &lt;strong&gt;offline&lt;/strong&gt;, configured &lt;strong&gt;offline&lt;/strong&gt; and then rebooted and connected to the Internet when it’s able to defend itself correctly.&lt;/p&gt;
+
+&lt;p&gt;I mentioned that this is a minimalist Debian install, and that means we don’t have sudo installed yet, so in order to make changes and install packages you’ll need to become root.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ su
+  Password: _  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Enter your root user (superuser = su) password and hit Enter.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;root@localhost:/home/developer# _
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Notice the change, you’re presented with the root prompt ‘#’ instead of the normal user prompt ‘$’. We need to install a bunch of packages before we can safely connect to the Internet, so we’ll mount the USB installer and use apt-cdrom.
+Since we’re not using a physical Blu-ray disk there is the issue of mounting the USB drive so that it works like a Blu-ray disk.&lt;/p&gt;
+
+&lt;p&gt;First we need to make a new directory&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# mkdir /media/usb0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Next we need to determine the path to your USB installer.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# fdisk -l
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;You will get a response, and the information on the left-hand side will look something like this:&lt;/p&gt;
+
+&lt;p&gt;Device  &lt;br /&gt;
+/dev/sda1
+/dev/sda2  &lt;br /&gt;
+/dev/sda5&lt;/p&gt;
+
+&lt;p&gt;Device   &lt;br /&gt;
+/dev/sdb1&lt;/p&gt;
+
+&lt;p&gt;The second device is the USB installer.    &lt;br /&gt;
+In my case, the path listed /dev/sdb1&lt;br /&gt;
+Will need to be mounted as /dev/sdb&lt;/p&gt;
+
+&lt;p&gt;You will generally get a path like one of these: &lt;br /&gt;
+/dev/sdx1&lt;/p&gt;
+
+&lt;p&gt;/dev/mmcblk0p1&lt;/p&gt;
+
+&lt;p&gt;These paths would be mounted as:&lt;br /&gt;
+/dev/sdx&lt;/p&gt;
+
+&lt;p&gt;/dev/mmcblk0&lt;/p&gt;
+
+&lt;p&gt;We need to mount the USB drive (in my case dev/sdb) as a read-only loop device (-o loop,ro) at /media/usb0&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# mount -o loop,ro /dev/sdb /media/usb0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Next we need to tell apt-cdrom not to mount anything (-m) and to use the CD-ROM mount point(-d) of /media/usb0 and add a CD-ROM.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# apt-cdrom -m -d=/media/usb0 add
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now we need to use vi to edit /etc/apt/sources.list&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# vi /etc/apt/sources.list
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;There will be a decent number of lines, which you need to delete all of.&lt;br /&gt;
+Hit the Escape key and then hit the ‘d’ key repeatedly until every line has been deleted.&lt;br /&gt;
+Next, hit the Escape key and then hit the ‘i’ key once.&lt;br /&gt;
+Now type in the following, and make it look exactly like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;deb [trusted=yes] file:/media/usb0 stretch  main  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If you make a mistake, hit the Escape key, and then use ‘x’ to delete the typo.&lt;br /&gt;
+Hit the Escape key and then ‘i’, and then type in the correct letters.    &lt;br /&gt;
+When you have the line exactly, hit the Escape key, then type in the following:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;:wq  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;And hit the Enter key.  &lt;br /&gt;
+Now update APT’s package list to reflect all of the packages available via the USB installer, following any instructions given:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# apt-get update  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Then upgrade the packages&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# apt-get upgrade  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;To install packages vim and curl:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  # apt-get install sudo vim curl
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Add your user ‘developer’ to group sudo:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# apt-get update  
+# adduser developer sudo  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Next, install ufw (Universal Firewall) so that we can connect to the Internet without being immediately compromised:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# apt-get update  
+# apt-get install ufw  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Configure ufw:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# ufw enable
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;ufw won’t work until you reboot, so now’s a good time to do that:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# reboot
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Login.
+Check to make sure that ufw is active and set correctly:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo ufw status verbose
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If ufw is set correctly, it should read:&lt;/p&gt;
+&lt;h5&gt;Status: active  
+
+    Logging: on (low)      
+
+    Default: deny (incoming), allow (outgoing)      
+
+    New profiles: skip&lt;/h5&gt;
+
+&lt;p&gt;Before we can take full advantage of the Internet and install the rest of the packages that we need to install, we need to reconfigure our sources.list file.
+This will require vim, which is easy to use and extremely useful.&lt;/p&gt;
+
+&lt;h4&gt;vimtutor&lt;/h4&gt;
+&lt;p&gt;vim comes with its own interactive tutorial, so learning how to use it is a straightforward process that doesn’t take a lot of time.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ vimtutor
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Work through the interactive tutorial, and when you’re done you can configure your sources.list file&lt;/p&gt;
+
+&lt;p&gt;If you want to shortcut this vim editing challenge of mine you can opt for the easier method and learn how to use curl. This is how you can use curl to download the already completed sources.list file from my GitHub:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ curl -o sources.list https://raw.githubusercontent.com/andDevW/debiandroid/master/CONFIGURATION_FILES/SOURCES/MAIN/sources.list
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;then move the file you just downloaded to /etc/apt/sources.list&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo mv ~/home/developer/sources.list /etc/apt/sources.list
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If you don’t live in the United States of America you might want to change the country to a country that’s closer to where you’re located.&lt;br /&gt;
+US deb http://ftp.us.debian.org/debian/ jessie-backports main&lt;br /&gt;
+IN deb http://ftp.in.debian.org/debian/ jessie-backports main&lt;br /&gt;
+DE deb http://ftp.de.debian.org/debian/ jessie-backports main&lt;br /&gt;
+XY deb http://ftp.xy.debian.org/debian/ jessie-backports main&lt;/p&gt;
+
+&lt;p&gt;The following explains how to use the ‘#’ to either enable or disable a line:&lt;/p&gt;
+
+&lt;p&gt;ENABLED&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;deb http://ftp.us.debian.org/debian/ jessie-backports main
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;DISABLED (commented out)&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#deb http://ftp.us.debian.org/debian/ jessie-backports main
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;You’ll need to comment out the line that we edited earlier, so that apt will only check online repositories, and not the local USB installer.
+Here’s what your sources.list needs to look like:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# /etc/apt/sources.list
+
+#stretch aptitude-cdrom via usb0
+#deb [trusted=yes] file:/media/usb0 stretch  main  
+
+#stretch security updates main
+deb http://security.debian.org/ stretch/updates main
+deb-src http://security.debian.org/ stretch/updates main
+
+#stretch main
+deb http://ftp.us.debian.org/debian/ stretch main
+deb-src http://ftp.us.debian.org/debian/ stretch main
+
+#jessie-backports main
+deb http://ftp.us.debian.org/debian/ jessie-backports  main
+deb-src http://ftp.us.debian.org/debian/ jessie-backports main
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Ignore the top three lines that are commented out, and look at the rest of the file.&lt;br /&gt;
+Notice that the sources.list file has three different repositories, with two lines each.&lt;br /&gt;
+The first line begins with deb …&lt;br /&gt;
+The second line begins with deb-src … &lt;br /&gt;
+Then everything that comes after that prefix is exactly the same.&lt;/p&gt;
+
+&lt;p&gt;An easy way to enter these lines into your sources.list is to only type out the first lines starting with ‘deb’.  &lt;br /&gt;
+Next hit the Escape key, then move the cursor to the line you want to copy and hit the ‘Y’ key to copy the line.&lt;br /&gt;
+Hit the Escape key and then hit the ‘P’ key to paste.&lt;br /&gt;
+Vi will copy the first line onto the line below it, so now you only need to insert ‘-src’ after ‘deb’.&lt;/p&gt;
+
+&lt;p&gt;Before updating apt we might as well add the i386 architecture that Android Studio requires:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo dpkg –add-architecture i386
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now to update and upgrade apt:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo apt-get update &amp;amp;&amp;amp; sudo apt-get upgrade
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;**If you make any mistakes, apt will inform you of where they were made.
+One way to make identifying the mistake much easier is to set vi to show number lines by default. Here’s how:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ echo “set number” &amp;gt;&amp;gt; ~/.vimrc
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This is a method of creating new files and amending existing files,
+if you were to issue the above command two times your ~/.vimrc file would look like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;set number
+  set number
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Here is how issuing the command works:&lt;br /&gt;
+echo “YOUR TEXT” » YOUR_FILENAME&lt;/p&gt;
+
+&lt;p&gt;As apt updates you will be presented with messages that you need to scan through and ultimately hit the Enter key to proceed.
+At the end of the message you will have to enter ‘q’ to quit.
+Now that your Debian OS is up-to-date you can get down to business.
+Right now you don’t have Xorg installed, so you don’t have the ability to display graphics (at least not graphics as we know them now), and as a result you won’t be able to run Android Studio or the Chromium browser. For Android development we need to have graphics, and we also need easy access to a terminal window, and on top of that, we want to keep everything as lightweight as possible with regards to resource &lt;br /&gt;
+ need to install a Dynamic Window Manager (DWM), and since i3 works beautifully with Android Studio right out of the box, we’re going to use i3.&lt;/p&gt;
+
+&lt;p&gt;These commands are available via GitHub, to simplify things: https://github.com/andDevW/debiandroid/resources/commands.txt&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo apt-get install xorg openjdk-7-jdk i3 xfe chromium android-tools-adb android-tools-fastboot gradle git git-core gnupg flex bison gperf build-essential zip curl zlib1g-dev gcc-multilib g++-multilib  libc6-dev-i386 lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z1-dev ccache libgl1-mesa-dev  libxml2-utils xsltproc unzip inkscape
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;You’ll get a prompt asking you for a Y/n&lt;br /&gt;
+The uppercase Y means the default is YES, so you can just hit Enter.&lt;/p&gt;
+
+&lt;p&gt;When the installation is complete  you’ll need to reboot to get everything working:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo reboot
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now, log in and launch Xserver:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ startx
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;i3 will prompt you to configure the ~/.i3/config, so follow the prompt or just hit Enter.&lt;br /&gt;
+Now you should be looking at a new type of homescreen, and this is i3.
+i3 is in my opinion the best DWM that there is, because it will allow you to rely almost entirely on the keyboard for navigation that would generally require a mouse or touchpad.
+This ends up being a massive improvement, and saving a ton of time.&lt;/p&gt;
+
+&lt;p&gt;Here is a basic i3 tutorial, to show you how to get around in i3:
+Your mod key (Mod) will generally be the Windows key on your keyboard.
+Hit Mod + Enter and open a new terminal window.&lt;br /&gt;
+Hit Mod + Enter and open another terminal window.
+Hit Mod + Enter and open another terminal window.
+Hit Mod + Enter and open one last terminal window. &lt;br /&gt;
+Now hold Mod and hit the left arrow key &amp;lt;–
+While holding Mod hit the left arrow key again.
+While still holding Mod hit the right arrow key –&amp;gt;
+While holding Mod hit the left arrow key again.
+Now hit Mod + Shift + ‘Q’ and close the window that you have selected.&lt;/p&gt;
+
+&lt;p&gt;Now hit Mod + ‘E’.
+Hit Mod + ‘E’ again.&lt;/p&gt;
+
+&lt;p&gt;Hit Mod + Shift + ‘E’ to Exit i3.&lt;/p&gt;
+
+&lt;p&gt;Now to start the Chromium browser you can use the command line:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ chromium
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;But there is a shortcut that starts Chromium without taking up a terminal window in the process.
+Hold Mod(Windows key) and press ‘D’ , bringing up XFE.&lt;br /&gt;
+Now type in the word chromium&lt;br /&gt;
+When you see chromium selected hit the Enter key.&lt;/p&gt;
+
+&lt;p&gt;Now, inside Chromium navigate to:&lt;br /&gt;
+https://developer.android.com/studio/index.html#downloads&lt;br /&gt;
+Download Android Studio for Linux, or:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cd ~/Downloads  
+$ wget https://dl.google.com/dl/android/studio/ide-zips/2.3.3.0/android-studio-ide-162.4069837-linux.zip
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Then verify the integrity of the download:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ echo “1383cfd47441e5f820b6257a1bdd683e0e980bc76c7f2027ef84dc2e6ad2f17f android-studio-ide-162.4069837-linux.zip” | sha256sum -c
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If the file downloaded correctly it will say  &lt;br /&gt;
+&lt;strong&gt;android-studio-ide-162.4069837-linux.zip:OK&lt;/strong&gt;
+Now change into your home directory and unzip the file that you just downloaded:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cd ~
+$ unzip ~/Downloads/android-studio-ide-162.4069837-linux.zip
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;When the file is finished unzipping, if no errors are displayed you can go ahead and delete the zip file:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ rm -rf ~/Downloads/android-studio-ide-162.4069837-linux.zip
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now you’ll need to install openjdk-8-jdk:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; $ sudo apt-get install openjdk-8-jdk
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Next, you’ll need to configure the JAVA_HOME and ANDROID_HOME environments in your ~/.bashrc&lt;br /&gt;
+*IT’S IMPORTANT TO MAKE SURE THAT YOU ARE NOT ROOT WHEN EDITING .bashrc&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ vi ~/.bashrc
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Next hit ESC then SHIFT + ‘G’ to jump to the bottom of the file.&lt;br /&gt;
+Hit ESC, and then SHIFT + ‘O’ to skip to a new line.&lt;br /&gt;
+Add the following lines, substituting your USERNAME for ‘developer’ if you didn’t use ‘developer’ as your USERNAME.&lt;br /&gt;
+Some of which are commented out, but will be useful for building AOSP.&lt;br /&gt;
+ADD THESE LINES:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#Configure the JAVA_HOME environment
+#Configuration for openjdk-7-jdk
+export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
+
+#Configuration for openjdk-8-jdk:
+#export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
+
+#Configure the ANDROID_HOME environment  
+export ANDROID_HOME=/home/developer/Android/Sdk
+export PATH=$PATH:/home/developer/Android/Sdk/platform-tools
+export PATH=$ANDROID_HOME/tools:$PATH/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If you want to skip manually configuring your bashrc file you can use curl to download the complete file from GitHub:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  $ curl -o ~/.bashrc https://raw.githubusercontent.com/andDevW/debiandroid/master/CONFIGURATION_FILES/.bashrc
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now source .bashrc so that the changes you made will take effect:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    $ source ~/.bashrc or
+    $ . ~/.bashrc
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;You will quickly know that your .bashrc file either works or doesn’t work. &lt;br /&gt;
+If it worked your command prompt will now be colored.&lt;br /&gt;
+If your .bashrc file doesn’t work you won’t see a colored command line prompt, and you might get an error about where it’s broken.&lt;/p&gt;
+
+&lt;p&gt;Now create a symbolic link to the android studio script so that you can easily launch Android Studio from dmenu by selecting ‘astudio’ :&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo ln -s  ~/android-studio/bin/studio.sh /usr/local/bin/astudio
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now select astudio in XFE, or run the script manually:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cd ~/android-studio/bin/
+$ ./studio.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;In the Android Studio Wizard select Next, then use the default configuration and wait for everything to download, and then hit the Finish button.
+Now you have a fully working installation of Android Studio v2.3.3 on a fully working Debian Stretch OS.&lt;br /&gt;
+Remember to update your system by running the command&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo apt-get update &amp;amp;&amp;amp; sudo apt-get upgrade
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Enjoy GNU/Linux and Android development!&lt;/p&gt;</content><author><name></name></author><category term="debian" /><category term="android studio" /><category term="debian stretch" /><summary type="html">Step-by-step Guide to Installing Debian Stretch for Android Development</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/img/" /></entry><entry><title type="html">How to Leave Ubuntu for Debian</title><link href="http://localhost:4000/how-to-leave-ubuntu-for-debian/" rel="alternate" type="text/html" title="How to Leave Ubuntu for Debian" /><published>2017-08-15T11:48:01-07:00</published><updated>2017-08-15T11:48:01-07:00</updated><id>http://localhost:4000/how-to-leave-ubuntu-for-debian</id><content type="html" xml:base="http://localhost:4000/how-to-leave-ubuntu-for-debian/">&lt;h2&gt;Everybody knows that stock Ubuntu has a ton of bloat-ware, but did you know that you can use Ubuntu to drastically simplify the process of putting together Debian install media?&lt;/h2&gt;
+&lt;p&gt;It’s actually a lot easier than cleaning up all of those Ubuntu apps that you don’t need.&lt;/p&gt;
+
+&lt;p&gt;Here is a relatively easy way to obtain a Debian 9.1.0 Blu-ray disk(BD) image and burn it onto a USB drive or an SD card. The Debian BD image contains all of install DVDs 1,2 and 3, so it has everything you’ll need for an &lt;a href=&quot;    https://www.debian.org/doc/manuals/securing-debian-howto/&quot;&gt;air-gapped off-line installation&lt;/a&gt;, which I’ll explain in the next post.&lt;/p&gt;
+
+&lt;p&gt;You Will Need:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;USB flash drive or SD card 32GB or larger&lt;/li&gt;
+  &lt;li&gt;PC running Ubuntu&lt;/li&gt;
+  &lt;li&gt;Internet connection&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;In Ubuntu open up a terminal window and install jigdo and wget by entering the following:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo apt-get install jigdo-file wget
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;When installation is complete, make a folder to store your Debian image:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ mkdir ~/Debian
+$ cd ~/Debian
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The Debian BD image related files are available here:
+ https://cdimage.debian.org/debian-cd/current/amd64/jigdo-bd/&lt;/p&gt;
+
+&lt;p&gt;To expedite everything you can just run the following commands one at-a-time to download everything needed:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cd ~/Debian
+
+$ wget  https://cdimage.debian.org/debian-cd/current/amd64/jigdo-bd/debian-9.1.0-amd64-BD-1.jigdo
+
+$ wget https://cdimage.debian.org/debian-cd/current/amd64/jigdo-bd/debian-9.1.0-amd64-BD-1.template
+
+$ wget https://cdimage.debian.org/debian-cd/current/amd64/jigdo-bd/SHA512SUMS.sign
+
+$ wget https://cdimage.debian.org/debian-cd/current/amd64/jigdo-bd/SHA512SUMS
+
+$ wget https://cdimage.debian.org/debian-cd/current/amd64/jigdo-bd/SHA256SUMS.sign
+
+$ wget https://cdimage.debian.org/debian-cd/current/amd64/jigdo-bd/SHA256SUMS
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Next you’ll need to find and start jigdo:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ ls -a
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;It will display all of the files in the Debian folder:&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;
+debian-9.1.0-amd64-BD-1.jigdo  debian-9.1.0-amd64-BD-1.template  SHA256SUMS  SHA256SUMS.sign  SHA512SUMS  SHA512SUMS.sign&lt;/b&gt;&lt;/p&gt;
+
+&lt;p&gt;Start Jigdo:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ jigdo-lite
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;At the prompt use your mouse to select and highlight &lt;br /&gt;
+debian-9.1.0-amd64-BD-1.jigdo and paste it into the blank.&lt;br /&gt;
+Hit Enter.
+At the ‘Files to scan’ prompt hit Enter again.&lt;/p&gt;
+
+&lt;p&gt;At the ‘Debian mirror’ prompt hit Enter.&lt;/p&gt;
+
+&lt;p&gt;Now, all you have to do is make sure not to close your terminal window.&lt;/p&gt;
+
+&lt;p&gt;If you do close the terminal window, or have to stop the process, simply return to your Debian folder and restart Jigdo by running the following commands:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cd ~/Debian
+$ jigdo-lite
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Hit the Enter key through all of the prompts.&lt;/p&gt;
+
+&lt;p&gt;Now just let jigdo run and put everything together for you.
+When the process is finished you will see: &lt;br /&gt;
+&lt;b&gt; FINISHED &lt;/b&gt;&lt;/p&gt;
+
+&lt;p&gt;Then, if everything checks out you’ll get the go-ahead to proceed:&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;OK: Checksums match, image is good!&lt;/b&gt;&lt;/p&gt;
+
+&lt;p&gt;Let’s check to see that the image is there:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ ls -a
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Which should display our brand new Debian 9.1.0 image as&lt;br /&gt;
+  debian-9.1.0-amd64-BD-1.iso :&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;debian-9.1.0-amd64-BD-1.iso    debian-9.1.0-amd64-BD-1.template  SHA256SUMS       SHA512SUMS
+    debian-9.1.0-amd64-BD-1.jigdo  jigdo-file-cache.db   SHA256SUMS.sign  SHA512SUMS.sign&lt;/b&gt;&lt;/p&gt;
+
+&lt;p&gt;Now to burn the image to the USB/SD card:&lt;/p&gt;
+
+&lt;p&gt;Insert the USB/SD card into a USB port on your PC.&lt;/p&gt;
+
+&lt;p&gt;Determine the path to the USB/SD card:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo fdisk -l
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Which should display something like:&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Device      Boot  Start       End   Sectors   Size Id Type&lt;br /&gt;
+/dev/sdb1         2048  60061695  60059648  28.7G 83 Linux&lt;/b&gt;&lt;/p&gt;
+
+&lt;p&gt;In my case the USB/SD card is /dev/sdb1, so that’s where I’ll burn the image to.
+Generally, your USB/SD card won’t ever be /dev/sda1
+So you never want to mess with /dev/sda1&lt;/p&gt;
+
+&lt;p&gt;Since you’re using Ubuntu it’s critical that you unmount the USB/SD card:
+    $ sudo umount /dev/sdb1 /mnt&lt;/p&gt;
+
+&lt;p&gt;Next sync the USB/SD card:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo sync  /dev/sdb1 /mnt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now you’re going to cat the iso image onto the USB/SD card. This can take a tremendous amount of time with USB2 or a slow SD card or USB2 SD card reader/adapter. USB3 and/or a fast SD card makes the process much faster.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo su
+# sh -c “cat debian-9.1.0-amd64-BD-1.iso &amp;gt;&amp;gt; /dev/sdb”   
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;It may take a while, so make sure to keep the terminal window open until it’s finished writing the image.&lt;/p&gt;
+
+&lt;p&gt;When the image is complete you need to unmount and sync the USB/SD card:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo umount /dev/sdb1 /mnt
+$ sudo sync  /dev/sdb1 /mnt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Then return back to your normal non-root user account:
+  # exit&lt;/p&gt;
+
+&lt;h2&gt;Now you have genuine Debian 9 &lt;br /&gt; Blu-ray Disk iso burned onto a USB.&lt;/h2&gt;
+&lt;p&gt;Included in this amazing installer are the top 15,801 most popular Debian packages.&lt;/p&gt;
+
+&lt;p&gt;NEXT:  I’ll cover exactly how to go about installing Debian Stretch for Android Development.&lt;/p&gt;</content><author><name></name></author><category term="ubuntu" /><category term="debian" /><category term="distro" /><summary type="html">Everybody knows that stock Ubuntu has a ton of bloat-ware, but did you know that you can use Ubuntu to drastically simplify the process of putting together Debian install media? It’s actually a lot easier than cleaning up all of those Ubuntu apps that you don’t need.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/img/" /></entry></feed>
